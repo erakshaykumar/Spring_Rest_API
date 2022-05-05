@@ -4,6 +4,7 @@ package com.springrestapi.controller;
  * Create a Rest Controller to demonstrate the various HTTP Methods and respond hello messages to the User.
  */
 
+import com.springrestapi.model.UserInfo;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -37,5 +38,21 @@ public class HelloRestController {
     @GetMapping(value= "/param/{name}")
     public String sayHelloParam(@PathVariable String name){
         return "Hello " + name + " Welcome To BridgeLabz";
+    }
+
+    /** @PostMapping : this annotation handle the post type of annotation
+     * @RequestBody : is used to convert the body of HTTP request to java class object
+     *http://localhost:8080/post?Content-type=json : URL request through POSTMAN
+            * JSON:{
+     *          "firstName":"Akshay",
+     *          "lastName" :"Kumar"
+                *
+     *      }
+     * O/P ; Hello Akshay Kumar Welcome To BridgeLabz
+     */
+    @PostMapping("/post")
+    public String sayHelloPost(@RequestBody UserInfo userInfo ){
+        return "Hello " + userInfo.getFirstName() +" "+userInfo.getLastName() + " Welcome To BridgeLabz";
+
     }
 }
